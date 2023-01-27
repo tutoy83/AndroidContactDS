@@ -22,18 +22,23 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.homeTitle.text = "Mes contacts"
+        // Initit adapter, layout manager
+        val adapter = ContactAdapter(ArrayList(), onItemClickListener = {})
+        binding.categoryList.adapter = adapter
+        binding.categoryList.layoutManager = LinearLayoutManager(this)
 
+        loadContactsFromAPI()
     }
 
     private fun loadContactsFromAPI() {
         val url = "https://randomuser.me/api/?results=10&nat=fr"
 
         val jsonRequest = JsonObjectRequest(Request.Method.GET, url, null, {
-            Log.w("HomeActivity", "response : $it")
+            Log.w("HomeActivity", "responseAPI : $it")
             handleAPIData(it.toString())
         }, {
-            Log.w("HomeActivity", "error : $it")
+            Log.w("HomeActivity", "errorAPI : $it")
+
         })
 
         Volley.newRequestQueue(this).add(jsonRequest)
@@ -43,5 +48,6 @@ class HomeActivity : AppCompatActivity() {
         val contactsResult = Gson().fromJson(data, DataResult::class.java)
         val contacts = contactsResult.results as ArrayList<Results>
         val adapter = binding.categoryList.adapter as ContactAdapter
+        adapter.refreshList(contacts)
     }
 }
