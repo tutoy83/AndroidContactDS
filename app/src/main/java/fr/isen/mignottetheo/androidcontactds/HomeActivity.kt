@@ -16,5 +16,6 @@ class HomeActivity : AppCompatActivity() {
 
         binding.homeTitle.text = "Hello there !"
 
+
     }
 }
