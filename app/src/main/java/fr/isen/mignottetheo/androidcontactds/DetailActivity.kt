@@ -34,7 +34,9 @@ class DetailActivity : AppCompatActivity() {
         }
 
         //Modifier adresse
-        binding.detailAddress.text = contact.location?.street?.number.toString() + " " + contact.location?.street?.name.toString() + ", " + contact.location?.city.toString()
+        binding.detailAddress.text = contact.location?.street?.number.toString() + " " + contact.location?.street?.name
+        binding.detailAddressOpt.text = contact.location?.city
+
 
         //Modifier mail
         binding.detailMail.text = contact?.email

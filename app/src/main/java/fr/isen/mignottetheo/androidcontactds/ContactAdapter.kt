@@ -31,7 +31,7 @@ class ContactAdapter(var contacts: ArrayList<Results>, val onItemClickListener: 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         val contact = contacts[position]
         holder.cellName.text = contact.name?.first + " " + contact.name?.last
-        holder.cellAddress.text = contact.location?.street?.number.toString() + " " + contact.location?.street?.name.toString() + ", " + contact.location?.city.toString()
+        holder.cellAddress.text = contact.location?.street?.number.toString() + " " + contact.location?.street?.name.toString() + ", " + contact.location?.city.toString()+ ", " + contact.location?.state.toString()
         holder.cellMail.text = contact?.email
 
         val foodPhoto = contact.picture?.medium
