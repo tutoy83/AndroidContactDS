@@ -28,6 +28,16 @@ class HomeActivity : AppCompatActivity() {
         binding.categoryList.layoutManager = LinearLayoutManager(this)
 
         loadContactsFromAPI()
+
+        val value: ArrayList<Results> = arrayListOf()
+
+        binding.categoryList.adapter = ContactAdapter(value) {
+            val intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra("contactSelected",it)
+            startActivity(intent)
+        }
+
+
     }
 
     private fun loadContactsFromAPI() {

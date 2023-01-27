@@ -37,9 +37,10 @@ class ContactAdapter(var contacts: ArrayList<Results>, val onItemClickListener: 
         val foodPhoto = contact.picture?.medium
         Picasso.get().load(foodPhoto).into(holder.cellImage)
 
+        holder.itemView.setOnClickListener{
+            onItemClickListener(contact)
+        }
     }
-
-
     override fun getItemCount(): Int = contacts.size
 
     fun refreshList(contactsFromAPI: ArrayList<Results>){
